@@ -25,6 +25,7 @@ cycler==0.11.0
 debugpy @ file:///C:/ci_311/debugpy_1676426137692/work
 decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
 defusedxml==0.7.1
+docopt==0.6.2
 entrypoints @ file:///C:/ci_311/entrypoints_1676423328987/work
 et-xmlfile==1.1.0
 executing @ file:///opt/conda/conda-bld/executing_1646925071911/work
@@ -81,6 +82,7 @@ parso @ file:///opt/conda/conda-bld/parso_1641458642106/work
 patsy==0.5.3
 pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
 Pillow==9.4.0
+pipreqs==0.4.11
 platformdirs @ file:///C:/ci_311/platformdirs_1676422658103/work
 plotly==5.14.0
 plotly-express==0.4.1
@@ -148,4 +150,5 @@ websocket-client==1.5.1
 widgetsnbextension @ file:///C:/b/abs_882k4_4kdf/croot/widgetsnbextension_1679313880295/work
 win-inet-pton @ file:///C:/ci_311/win_inet_pton_1676425458225/work
 wincertstore==0.2
+yarg==0.1.9
 zipp @ file:///C:/ci_311/zipp_1676426100491/work
