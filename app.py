@@ -17,7 +17,7 @@ st.sidebar.markdown("This is a dashboard that analyzes TikTok's big data.")
 st.title('TikTok Data Analysis')
 
 #header
-st.header(' ')
+# st.header(' ')
 
 
  # Read the file and start the Viz
@@ -81,10 +81,12 @@ bar = st.progress(0)
 
 for i in range(100):
   # Update the progress bar with each iteration.
-  latest_iteration.text(f'Iteration {i+1}')
+
   bar.progress(i + 1)
   time.sleep(0.01)
+  latest_iteration.text(f'Iteration {i+1}')
   # 0.01 초 마다 1씩증가
     # 성공문구 + 풍선이 날리는 특수효과 
 st.sidebar.success("completed!")
+
 # st.balloons()
