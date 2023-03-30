@@ -4,8 +4,8 @@ import pandas as pd
 from subprocess import call
 # import plotly.express as px
 # from st_aggrid import AgGrid
-# import pickle
-# import plotly.graph_objects as go
+import pickle
+import plotly.graph_objects as go
 
 st.set_page_config(page_title="TIKTOK Dashboard", layout='wide')
 
@@ -17,7 +17,7 @@ st.title('TikTok Data Analysis')
 
  # Read the file and start the Viz
 data1  = pd.read_csv('main\df_videos_users_focus_0329.csv')
-data2  = pd.read_csv('main\df_videos_users_focus_0330.csv')
+# data2  = pd.read_csv('main\df_videos_users_focus_0330.csv')
 
 import time
 data1['collection_time'] = (pd.to_datetime(data1['collection_time'],unit='ms'))
