@@ -7,78 +7,82 @@ from st_aggrid import AgGrid
 import pickle
 import plotly.graph_objects as go
 
-st.set_page_config(layout='wide')
+st.set_page_config(page_title="TIKTOK Dashboard", layout='wide')
+
 st.sidebar.markdown("<div><img src='https://abcstudio.co/web/season2_skin/skin6/images/logo.png' width=200 /><h1 style='display:inline-block'>Tiktok Analytics</h1></div>", unsafe_allow_html=True)
 st.sidebar.markdown("<div><img src='https://raw.githubusercontent.com/jangsejong/toma-streamlit-tiktok/main/main/logo.png?token=GHSAT0AAAAAACAHNK2UHWYHHWPXANWXWUIAZBFMTVA' width=100 /></div>", unsafe_allow_html=True)
 st.sidebar.markdown("This is a dashboard that analyzes TikTok's big data.")
 
-# Header
-st.header('TikTok Data Analysis')
+# title
+st.title('TikTok Data Analysis')
 
-# # Just to show how it actualy looks like:
-# st.sidebar.slider('followers', 1, 100000, 100)
-# st.sidebar.slider('hearts', 1, 100000, 100)
-# st.sidebar.slider('shareCount', 0, 220100)
-# st.sidebar.slider('video_duration', 4, 60, 4)
+#header
+st.header(' ')
 
 
  # Read the file and start the Viz
 data1  = pd.read_csv('main\df_videos_users_focus_0329.csv')
 data2  = pd.read_csv('main\df_videos_users_focus_0330.csv')
 
-def user_input_features():
+import time
+data1['collection_time'] = (pd.to_datetime(data1['collection_time'],unit='ms'))
+#Convert epoch to human-readable date and vice versa
 
-    followers = st.sidebar.slider('Followers', 0, 10000, 5000)
-    hearts = st.sidebar.slider('Hearts', 22, 100000, 5000)
-#     shareCount = st.sidebar.slider('shareCount', 0, 220100, 1)
-#     video_duration = st.sidebar.slider('video_duration', 4, 60, 4)
-    data = {
-        'ID': 'id',
-        'Followers': 'followers',
-        'Hearts': 'hearts',
-        'Video_count': 'collected_videos_count'}
-    features = pd.DataFrame(data, index=[0])
-    return features
-    
-df = user_input_features()
-
-st.subheader('User Inputs')
-st.write(df)
+df = pd.DataFrame(data=data1)
+df = df[['id', 'nickname', 'followers', 'hearts','collection_time','collected_videos_count']]
+# st.dataframe(df)
 
 
+Collected_videos_count = st.sidebar.multiselect(
+    'Please select the collect_videos_count. Multiple selections available:',
+    options=df['collected_videos_count'].unique(),
+    default=df['collected_videos_count'].unique()
+)
 
+import streamlit as st
+from datetime import datetime
 
-    # Read the file and start the Viz
-data  = pd.read_csv('main\df_videos_users_focus_0329.csv')
-data['hearts'] = 1
-data = data.groupby(["followers"])["hearts"].count().reset_index()
-data = data.sort_values(by='hearts', ascending=False)[:15]
+start_time = st.slider(
+    "When do you start?",
+    value=datetime(2023, 3, 31, 12, 30),
+    format="MM/DD/YY - hh:mm")
+st.write("Start time:", start_time)
 
-fig_2 = go.Figure(data=[go.Pie(
-                            labels=data["followers"], 
-                            values=data["hearts"], 
-                            textinfo='label+percent',
-                            insidetextorientation='radial'
-                    )], 
-                    layout={"colorway": ["#f72585","#b5179e",
-                                        "#7209b7","#560bad",
-                                        "#480ca8","#3a0ca3",
-                                        "#3f37c9","#4361ee",
-                                        "#4895ef","#4cc9f0"]})
+st.header(' ')
+# 라디오에 선택한 내용을 radio select변수에 담습니다
+radio_select =st.sidebar.radio(
+    "what is key column?",
+    ['followers', 'hearts'],
+    horizontal=True
+    )
 
-st.plotly_chart(fig_2, use_container_width=True) 
+if radio_select == 'followers':
+        st.write('You selected followers.')
+else:
+        st.write('You selected hearts.')
+        
+st.header(' ')
+# 선택한 컬럼의 값의 범위를 지정할 수 있는 slider를 만듭니다. 
+slider_range = st.sidebar.slider(
+    "choose range of key column",
+     0.0, #시작 값 
+     10000.0, #끝 값  
+    (500.5, 3000.5) # 기본값, 앞 뒤로 2개 설정 /  하나만 하는 경우 value=2.5 이런 식으로 설정가능
+)
 
-#     # Grid the page
-# left_col, right_col = st.columns(2)
+df_selec = df.query("collected_videos_count == @Collected_videos_count")
+st.dataframe(df_selec)
 
-#     # Create a Pie Chart with all values
-# fig_3 = px.scatter(data, x="hearts", y="followers", animation_frame="hearts", animation_group="followers",size='videoMeta.duration', color="authorMeta.verified", hover_name="shareCount") 
-#     # st.plotly_chart(fig_3, use_container_width=True)
-# left_col.plotly_chart(fig_3, use_container_width=True)
+    # 방법 1 progress bar 
+latest_iteration = st.empty()
+bar = st.progress(0)
 
-# fig_4 = px.scatter(data, x="hearts", y="followers", animation_frame="hearts", animation_group="followers",size='videoMeta.duration', color="authorMeta.verified")
-# right_col.plotly_chart(fig_4, use_container_width=True)
-
-#     # Show tabular dataframe in streamlit
-# st.markdown('Tip: You can groupby or apply filter on the columns!')
-# AgGrid(df)
+for i in range(100):
+  # Update the progress bar with each iteration.
+  latest_iteration.text(f'Iteration {i+1}')
+  bar.progress(i + 1)
+  time.sleep(0.01)
+  # 0.01 초 마다 1씩증가
+    # 성공문구 + 풍선이 날리는 특수효과 
+st.sidebar.success("completed!")
+st.balloons()
