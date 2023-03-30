@@ -61,7 +61,7 @@ if radio_select == 'followers':
 else:
         st.sidebar.write('You selected hearts.')
         
-st.header(' ')
+
 # 선택한 컬럼의 값의 범위를 지정할 수 있는 slider를 만듭니다. 
 slider_range = st.sidebar.slider(
     "choose range of key column",
