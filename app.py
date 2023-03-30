@@ -23,8 +23,8 @@ st.header('TikTok Data Analysis')
 
 
  # Read the file and start the Viz
-data1  = pd.read_csv('df_videos_users_focus_0329.csv')
-data2  = pd.read_csv('df_videos_users_focus_0330.csv')
+data1  = pd.read_csv('main\df_videos_users_focus_0329.csv')
+data2  = pd.read_csv('main\df_videos_users_focus_0330.csv')
 
 def user_input_features():
 
@@ -49,7 +49,7 @@ st.write(df)
 
 
     # Read the file and start the Viz
-data  = pd.read_csv('df_videos_users_focus_0329.csv')
+data  = pd.read_csv('main\df_videos_users_focus_0329.csv')
 data['hearts'] = 1
 data = data.groupby(["followers"])["hearts"].count().reset_index()
 data = data.sort_values(by='hearts', ascending=False)[:15]
