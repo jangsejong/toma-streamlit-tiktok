@@ -10,15 +10,10 @@ import plotly.graph_objects as go
 st.set_page_config(page_title="TIKTOK Dashboard", layout='wide')
 
 st.sidebar.markdown("<div><img src='https://abcstudio.co/web/season2_skin/skin6/images/logo.png' width=200 /><h1 style='display:inline-block'>Tiktok Analytics</h1></div>", unsafe_allow_html=True)
-# st.sidebar.markdown("<div><img src='https://raw.githubusercontent.com/jangsejong/toma-streamlit-tiktok/main/main/logo.png?token=GHSAT0AAAAAACAHNK2UHWYHHWPXANWXWUIAZBFMTVA' width=100 /></div>", unsafe_allow_html=True)
 st.sidebar.markdown("This is a dashboard that analyzes TikTok's big data.")
 
 # title
 st.title('TikTok Data Analysis')
-
-#header
-# st.header(' ')
-
 
  # Read the file and start the Viz
 data1  = pd.read_csv('main\df_videos_users_focus_0329.csv')
@@ -62,7 +57,7 @@ else:
         st.sidebar.write('You selected hearts.')
         
 
-# 선택한 컬럼의 값의 범위를 지정할 수 있는 slider를 만듭니다. 
+# Creates a slider that allows you to specify a range of values for the selected column.
 slider_range = st.sidebar.slider(
     "choose range of key column",
      0.0, #시작 값 
@@ -71,7 +66,6 @@ slider_range = st.sidebar.slider(
 )
 
 df_selec = df.query("collected_videos_count == @Collected_videos_count")
-
 
 st.dataframe(df_selec)
 
