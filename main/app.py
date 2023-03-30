@@ -29,5 +29,5 @@ def main() :
 # #=>위에 with col2: 안의 내용과 같은 기능을합니다
 
 
-# if __name__ == '__main__' :
-#     main()
+if __name__ == '__main__' :
+    main()
