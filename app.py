@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 st.set_page_config(page_title="TIKTOK Dashboard", layout='wide')
 
 st.sidebar.markdown("<div><img src='https://abcstudio.co/web/season2_skin/skin6/images/logo.png' width=200 /><h1 style='display:inline-block'>Tiktok Analytics</h1></div>", unsafe_allow_html=True)
-st.sidebar.markdown("<div><img src='https://raw.githubusercontent.com/jangsejong/toma-streamlit-tiktok/main/main/logo.png?token=GHSAT0AAAAAACAHNK2UHWYHHWPXANWXWUIAZBFMTVA' width=100 /></div>", unsafe_allow_html=True)
+# st.sidebar.markdown("<div><img src='https://raw.githubusercontent.com/jangsejong/toma-streamlit-tiktok/main/main/logo.png?token=GHSAT0AAAAAACAHNK2UHWYHHWPXANWXWUIAZBFMTVA' width=100 /></div>", unsafe_allow_html=True)
 st.sidebar.markdown("This is a dashboard that analyzes TikTok's big data.")
 
 # title
@@ -44,7 +44,7 @@ from datetime import datetime
 
 start_time = st.slider(
     "When do you start?",
-    value=datetime(2023, 3, 31, 12, 30),
+    value=datetime(2023, 3, 21, 12, 30),
     format="MM/DD/YY - hh:mm")
 st.write("Start time:", start_time)
 
@@ -57,9 +57,9 @@ radio_select =st.sidebar.radio(
     )
 
 if radio_select == 'followers':
-        st.write('You selected followers.')
+        st.sidebar.write('You selected followers.')
 else:
-        st.write('You selected hearts.')
+        st.sidebar.write('You selected hearts.')
         
 st.header(' ')
 # 선택한 컬럼의 값의 범위를 지정할 수 있는 slider를 만듭니다. 
@@ -71,6 +71,8 @@ slider_range = st.sidebar.slider(
 )
 
 df_selec = df.query("collected_videos_count == @Collected_videos_count")
+
+
 st.dataframe(df_selec)
 
     # 방법 1 progress bar 
@@ -85,4 +87,4 @@ for i in range(100):
   # 0.01 초 마다 1씩증가
     # 성공문구 + 풍선이 날리는 특수효과 
 st.sidebar.success("completed!")
-st.balloons()
+# st.balloons()
