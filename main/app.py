@@ -8,17 +8,18 @@ import pickle
 import plotly.graph_objects as go
 
 st.set_page_config(layout='wide')
-st.sidebar.markdown("<div><img src='https://abcstudio.co/web/season2_skin/skin6/images/logo.png' width=100 /><h1 style='display:inline-block'>Tiktok Analytics</h1></div>", unsafe_allow_html=True)
-st.sidebar.markdown("This dashboard allows you to analyse trending. TikTok's Big DATA.")
+st.sidebar.markdown("<div><img src='https://abcstudio.co/web/season2_skin/skin6/images/logo.png' width=200 /><h1 style='display:inline-block'>Tiktok Analytics</h1></div>", unsafe_allow_html=True)
+st.sidebar.markdown("<div><img src='https://raw.githubusercontent.com/jangsejong/toma-streamlit-tiktok/main/main/logo.png?token=GHSAT0AAAAAACAHNK2UKTTRJX72SZT76JKYZBFKEXA' width=90 /><h1 style='display:inline-block'>", unsafe_allow_html=True)
+st.sidebar.markdown("This is a dashboard that analyzes TikTok's big data.")
 
 # Header
 st.header('TikTok Data Analysis')
 
 # Just to show how it actualy looks like:
-st.sidebar.slider('followers', 0, 625700, 0)
-st.sidebar.slider('hearts', 100, 11000000, 0)
-st.sidebar.slider('shareCount', 0, 220100)
-st.sidebar.slider('video_duration', 4, 60, 4)
+st.sidebar.slider('followers', 1, 100000, 100)
+st.sidebar.slider('hearts', 1, 100000, 100)
+# st.sidebar.slider('shareCount', 0, 220100)
+# st.sidebar.slider('video_duration', 4, 60, 4)
 
 
 # def user_input_features():
