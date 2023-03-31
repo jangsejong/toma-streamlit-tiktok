@@ -53,8 +53,8 @@ else:
 slider_range = st.sidebar.slider(
     "choose range of key column",
      0.0, #시작 값 
-     10000.0, #끝 값  
-    (500.5, 3000.5) # 기본값, 앞 뒤로 2개 설정 /  하나만 하는 경우 value=2.5 이런 식으로 설정가능
+     100001.0, #끝 값  
+    (0.5, 100000.5) # 기본값, 앞 뒤로 2개 설정 /  하나만 하는 경우 value=2.5 이런 식으로 설정가능
 )
 
 from datetime import datetime
