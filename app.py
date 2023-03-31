@@ -7,10 +7,6 @@ from subprocess import call
 import pickle
 # import plotly.graph_objects as go
 
-with st.spinner('Loading... toma dashboard'):
-    time.sleep(5)
-st.success('Done!')
-
 st.set_page_config(page_title="TIKTOK Dashboard", layout='wide')
 st.sidebar.markdown("<div><img src='https://abcstudio.co/web/season2_skin/skin6/images/logo.png' width=200 /><h1 style='display:inline-block'>Tiktok Analytics</h1></div>", unsafe_allow_html=True)
 st.sidebar.markdown("This is a dashboard that analyzes TikTok's big data.")
