@@ -7,12 +7,7 @@ from subprocess import call
 import pickle
 # import plotly.graph_objects as go
 
-uploaded_file = st.file_uploader(
-    "Choose your database", accept_multiple_files=False)
-if uploaded_file is not None:
-    file_name = uploaded_file
-else:
-    file_name = "main\df_videos_users_focus_0329.csv"
+
 
 st.set_page_config(page_title="TIKTOK Dashboard", layout='wide')
 st.sidebar.markdown("<div><img src='https://abcstudio.co/web/season2_skin/skin6/images/logo.png' width=200 /><h1 style='display:inline-block'>Tiktok Analytics</h1></div>", unsafe_allow_html=True)
@@ -21,9 +16,17 @@ st.sidebar.markdown("This is a dashboard that analyzes TikTok's big data.")
 # title
 st.title('TikTok Data Analysis')
 
+
+uploaded_file = st.file_uploader(
+    "Choose your database", accept_multiple_files=False)
+if uploaded_file is not None:
+    file_name = uploaded_file
+else:
+    file_name = "main\df_videos_users_focus_0329.csv"
  # Read the file and start the Viz
 data1  = pd.read_csv('main\df_videos_users_focus_0329.csv')
 # data2  = pd.read_csv('main\df_videos_users_focus_0330.csv')
+
 
 import time
 data1['collection_time'] = (pd.to_datetime(data1['collection_time'],unit='ms'))
