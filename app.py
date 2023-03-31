@@ -19,7 +19,7 @@ st.title('TikTok Data Analysis')
 
 
  # Read the file and start the Viz
-data1  = pd.read_csv('main\df_videos_users_focus_0329.csv')
+data1  = pd.read_csv('df_videos_users_focus_0329.csv')
 # data2  = pd.read_csv('main\df_videos_users_focus_0330.csv')
 
 
