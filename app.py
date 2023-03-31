@@ -17,12 +17,7 @@ st.sidebar.markdown("This is a dashboard that analyzes TikTok's big data.")
 st.title('TikTok Data Analysis')
 
 
-uploaded_file = st.file_uploader(
-    "Choose your database", accept_multiple_files=False)
-if uploaded_file is not None:
-    file_name = uploaded_file
-else:
-    file_name = "main\df_videos_users_focus_0329.csv"
+
  # Read the file and start the Viz
 data1  = pd.read_csv('main\df_videos_users_focus_0329.csv')
 # data2  = pd.read_csv('main\df_videos_users_focus_0330.csv')
