@@ -36,16 +36,6 @@ Collected_videos_count = st.sidebar.multiselect(
     default=df['collected_videos_count'].unique()
 )
 
-import streamlit as st
-from datetime import datetime
-
-start_time = st.slider(
-    "When do you start?",
-    value=datetime(2023, 3, 21, 12, 30),
-    format="MM/DD/YY - hh:mm")
-st.write("Start time:", start_time)
-
-st.header(' ')
 # 라디오에 선택한 내용을 radio select변수에 담습니다
 radio_select =st.sidebar.radio(
     "what is key column?",
@@ -66,9 +56,27 @@ slider_range = st.sidebar.slider(
      10000.0, #끝 값  
     (500.5, 3000.5) # 기본값, 앞 뒤로 2개 설정 /  하나만 하는 경우 value=2.5 이런 식으로 설정가능
 )
-print(slider_range) 
-df_selec = df.query(f"collected_videos_count == @Collected_videos_count & {radio_select} >= {slider_range[0]} & {radio_select} <= {slider_range[1]}")
 
+from datetime import datetime
+
+# start_time = st.slider(
+#     "When do you start?",
+#     value=datetime(2023, 3, 21, 12, 30),
+#     format="MM/DD/YY - hh:mm")
+# st.write("Start time:", start_time)
+# st.header(' ')
+# start_time_str = start_time.strftime('%Y-%m-%d %H:%M:%S')
+start_date = st.date_input("When do you start?", datetime(2023, 1, 19))
+start_time = st.time_input("Start time", datetime(2023, 3, 1, 12, 30))
+
+start_datetime = datetime.combine(start_date, start_time)
+start_datetime_str = start_datetime.strftime('%Y-%m-%d %H:%M:%S')
+
+df_selec = df.query(f"collected_videos_count == @Collected_videos_count & {radio_select} >= {slider_range[0]} & {radio_select} <= {slider_range[1]} & collection_time >= @start_datetime_str")
+
+# print(slider_range) 
+# df_selec = df.query(f"collected_videos_count == @Collected_videos_count & {radio_select} >= {slider_range[0]} & {radio_select} <= {slider_range[1]}" )
+# df_selec = df.query(f"collected_videos_count == @Collected_videos_count & {radio_select} >= {slider_range[0]} & {radio_select} <= {slider_range[1]} & collection_time == @start_time_str ")
 st.dataframe(df_selec)
 
     # 방법 1 progress bar 
@@ -80,7 +88,7 @@ for i in range(100):
 
   bar.progress(i + 1)
   time.sleep(0.01)
-  latest_iteration.text(f'Iteration {i+1}')
+  latest_iteration.text(f'Completion rate {i+1}')
   # 0.01 초 마다 1씩증가
     # 성공문구 + 풍선이 날리는 특수효과 
 st.sidebar.success("completed!")
