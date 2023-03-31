@@ -6,8 +6,13 @@ from subprocess import call
 # from st_aggrid import AgGrid
 import pickle
 # import plotly.graph_objects as go
+import time
+
+# st.success('Done!')
 
 st.set_page_config(page_title="TIKTOK Dashboard", layout='wide')
+with st.spinner('Loading... TIKTOK_dashboard'):
+    time.sleep(5)
 st.sidebar.markdown("<div><img src='https://abcstudio.co/web/season2_skin/skin6/images/logo.png' width=200 /><h1 style='display:inline-block'>Tiktok Analytics</h1></div>", unsafe_allow_html=True)
 st.sidebar.markdown("This is a dashboard that analyzes TikTok's big data.")
 
@@ -18,8 +23,6 @@ st.title('TikTok Data Analysis')
 data1  = pd.read_csv('df_videos_users_focus_0329.csv')
 # data2  = pd.read_csv('main\df_videos_users_focus_0330.csv')
 
-
-import time
 data1['collection_time'] = (pd.to_datetime(data1['collection_time'],unit='ms'))
 #Convert epoch to human-readable date and vice versa
 
