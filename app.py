@@ -16,8 +16,6 @@ st.sidebar.markdown("This is a dashboard that analyzes TikTok's big data.")
 # title
 st.title('TikTok Data Analysis')
 
-
-
  # Read the file and start the Viz
 data1  = pd.read_csv('df_videos_users_focus_0329.csv')
 # data2  = pd.read_csv('main\df_videos_users_focus_0330.csv')
@@ -68,8 +66,8 @@ slider_range = st.sidebar.slider(
      10000.0, #끝 값  
     (500.5, 3000.5) # 기본값, 앞 뒤로 2개 설정 /  하나만 하는 경우 value=2.5 이런 식으로 설정가능
 )
-
-df_selec = df.query("collected_videos_count == @Collected_videos_count")
+print(slider_range) 
+df_selec = df.query(f"collected_videos_count == @Collected_videos_count & {radio_select} >= {slider_range[0]} & {radio_select} <= {slider_range[1]}")
 
 st.dataframe(df_selec)
 
