@@ -60,13 +60,6 @@ slider_range = st.sidebar.slider(
 
 from datetime import datetime
 
-# start_time = st.slider(
-#     "When do you start?",
-#     value=datetime(2023, 3, 21, 12, 30),
-#     format="MM/DD/YY - hh:mm")
-# st.write("Start time:", start_time)
-# st.header(' ')
-# start_time_str = start_time.strftime('%Y-%m-%d %H:%M:%S')
 start_date = st.date_input("When do you start?", datetime(2023, 1, 19))
 start_time = st.time_input("Start time", datetime(2023, 3, 1, 12, 30))
 
@@ -74,10 +67,6 @@ start_datetime = datetime.combine(start_date, start_time)
 start_datetime_str = start_datetime.strftime('%Y-%m-%d %H:%M:%S')
 
 df_selec = df.query(f"collected_videos_count == @Collected_videos_count & {radio_select} >= {slider_range[0]} & {radio_select} <= {slider_range[1]} & collection_time >= @start_datetime_str")
-
-# print(slider_range) 
-# df_selec = df.query(f"collected_videos_count == @Collected_videos_count & {radio_select} >= {slider_range[0]} & {radio_select} <= {slider_range[1]}" )
-# df_selec = df.query(f"collected_videos_count == @Collected_videos_count & {radio_select} >= {slider_range[0]} & {radio_select} <= {slider_range[1]} & collection_time == @start_time_str ")
 st.dataframe(df_selec)
 
     # 방법 1 progress bar 
