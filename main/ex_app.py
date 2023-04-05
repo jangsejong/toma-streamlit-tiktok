@@ -13,7 +13,6 @@ st.sidebar.markdown("This dashboard allows you to analyse trending 📈 TikTok's
 
 # Header
 st.header('TikTok Data Analyzer')
-
 # Just to show how it actualy looks like:
 # st.sidebar.slider('commentCount', 0, 625700, 0)
 # st.sidebar.slider('diggCount', 22, 31000000, 22)
