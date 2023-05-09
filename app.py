@@ -84,5 +84,3 @@ for i in range(100):
 st.sidebar.success("completed!")
 
 # st.balloons()
-
-
